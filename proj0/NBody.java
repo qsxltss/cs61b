@@ -1,7 +1,7 @@
 import java.time.Year;
 
 /** 模型？ */
-public class NBody {
+public class NBody{
   /** 返回模型星系的星球个数 */
   public static int readNumber(String s)
   {
