@@ -3,7 +3,7 @@ import java.time.Year;
 /** 模型？ */
 public class NBody{
   /** 返回模型星系的星球个数 */
-  public static int readNumber(String s)
+  private static int readNumber(String s)
   {
     In x = new In(s);
     int n = x.readInt();
@@ -26,13 +26,13 @@ public class NBody{
     Planet[] y = new Planet [n];
     for(int i = 0; i<n; i++)
     {
-      y[i] = new Planet();
-      y[i].xxPos = x.readDouble();
-      y[i].yyPos = x.readDouble();
-      y[i].xxVel = x.readDouble();
-      y[i].yyVel = x.readDouble();
-      y[i].mass = x.readDouble();
-      y[i].imgFileName = x.readString();
+      double xp = x.readDouble();
+      double yp = x.readDouble();
+      double xv = x.readDouble();
+      double yv = x.readDouble();
+      double m = x.readDouble();
+      String file = x.readString();
+      y[i] = new Planet(xp,yp,xv,yv,m,file);
     }
     return y;
   }

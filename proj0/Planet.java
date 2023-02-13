@@ -5,7 +5,7 @@ public class Planet {
   public double yyVel ;
   public double mass ; //质量
   public String imgFileName;
-  static double G = 6.67e-11;
+  private static double G = 6.67e-11;
   /** 第一种构造 */
   public Planet(double xP, double yP, double xV, double yV, double m, String img)
   {
@@ -27,15 +27,7 @@ public class Planet {
     this.imgFileName = p.imgFileName;
   }
   /** 第三种构造 */
-  public Planet()
-  {
-    xxPos = 0;
-    yyPos = 0;
-    xxVel = 0;
-    yyVel = 0;
-    mass = 0;
-    imgFileName = "";
-  }
+
   /** 计算距离*/
   public double calcDistance(Planet p)
   {
