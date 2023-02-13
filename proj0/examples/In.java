@@ -187,6 +187,8 @@ public final class In {
      * {@link #readDouble()}, etc will succeed.
      */
     public boolean isEmpty() {
+        //System.out.println(scanner.next());
+        //System.out.println("1");
         return !scanner.hasNext();
     }
 
