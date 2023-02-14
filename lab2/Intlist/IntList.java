@@ -81,13 +81,24 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
+        if(A == null)
+        {A = B; return A;}
         //TODO:  fill in method
-        IntList C = A;
+        /** 利用iterator的解法 */
+        /*IntList C = A;
         while(C.rest != null)
         {
             C = C.rest;
         }
         C.rest = B;
+        return A;*/
+        /** 利用recursion的解法*/
+        if(A.rest == null)
+        {
+            A.rest = B;
+            return A;
+        }
+        dcatenate(A.rest,B);
         return A;
     }
 
@@ -97,7 +108,8 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        IntList C = new IntList(0,null);
+        /** 利用iterator的解法 */
+        /*IntList C = new IntList(0,null);
         IntList D = A, E = B;
         IntList F = C;
         C.first = A.first;
@@ -115,7 +127,10 @@ public class IntList {
             E = E.rest;
             C = C.rest;
         }
-        return F;
+        return F;*/
+        /** 利用recursion的解法 */
+        if(A == null) return B;
+        return new IntList(A.first,catenate(A.rest,B));
     }
 
 
