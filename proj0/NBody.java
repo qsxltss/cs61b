@@ -59,8 +59,8 @@ public class NBody{
     {
       x.draw();
     }
-    /* 动态 */
-    StdDraw.enableDoubleBuffering();
+    /* 动态画面 */
+    StdDraw.enableDoubleBuffering();//step1
     int time = 0;
     while(time < T)
     {
@@ -73,10 +73,10 @@ public class NBody{
       }
       for(int i = 0; i<n; i++)
       {
-        p[i].update(dt, xforces[i], yforces[i]);
+        p[i].update(dt, xforces[i], yforces[i]);//step2:改变图像的位置
         p[i].draw();
       }
-      StdDraw.show();
+      StdDraw.show();//step3：调用show()函数呈现改变的内容
       StdDraw.pause(10);
       time += dt;
     }
