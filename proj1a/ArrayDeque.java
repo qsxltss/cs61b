@@ -23,7 +23,7 @@ public class ArrayDeque <T>{
     {
         T[] arr_new = (T[])new Object[arr.length+8];
         int num = 0;
-        int x = first+1;
+        int x = (first+1)% arr.length;
         while(num < len)
         {
             arr_new[num] = arr[x];
@@ -38,7 +38,7 @@ public class ArrayDeque <T>{
     {
         T[] arr_new = (T[])new Object[arr.length/2];
         int num = 0;
-        int x = first+1;
+        int x = (first+1)% arr.length;
         while(num < len)
         {
             arr_new[num] = arr[x];
