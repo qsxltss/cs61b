@@ -21,7 +21,7 @@ public class ArrayDeque <T>{
     }*/
     private void enlarge(T[] arr)
     {
-        T[] arr_new = (T[])new Object[arr.length+8];
+        T[] arr_new = (T[])new Object[arr.length*2];
         int num = 0;
         int x = (first+1)% arr.length;
         while(num < len)
