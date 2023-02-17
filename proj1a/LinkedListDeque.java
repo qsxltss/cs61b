@@ -21,7 +21,7 @@ public class LinkedListDeque <T> {
         sentinel.next = sentinel;
         len = 0;
     }
-    public LinkedListDeque(LinkedListDeque other)
+    /*public LinkedListDeque(LinkedListDeque other)
     {
         sentinel = new node(null,null,null);
         sentinel.prev = sentinel;
@@ -33,7 +33,7 @@ public class LinkedListDeque <T> {
             copy = copy.next;
             this.addLast(copy.item);
         }
-    }
+    }*/
     public void addFirst(T item)
     {
         node x = new node(item,sentinel,sentinel.next);
@@ -128,7 +128,7 @@ public class LinkedListDeque <T> {
     }
 
     /* helper function for getrecursive */
-    public T getRecur(node x, int index)
+    private T getRecur(node x, int index)
     {
         if(index == 0) return x.item;
         return getRecur(x.next,index-1);

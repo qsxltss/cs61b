@@ -1,42 +1,74 @@
 public class ArrayDeque <T>{
     private int len;
     private T[] arr;
-
+    private int first;//指向头,代表下一个addfirst的位置
+    private int last;//指向尾,代表下一个addlast的位置
     public ArrayDeque()
     {
         arr = (T[])new Object[8];
         len = 0;
+        first = 0;
+        last = 1;
     }
-    public ArrayDeque(ArrayDeque other)
+    /*public ArrayDeque(ArrayDeque other)
     {
         arr = (T[]) new Object[other.size()];
-        for(int i= 0; i< other.size();i++)
+        for(int i = 0; i < other.size(); i++)
         {
             arr[i] =(T)other.arr[i];
         }
         len = other.size();
+    }*/
+    private void enlarge(T[] arr)
+    {
+        T[] arr_new = (T[])new Object[arr.length+8];
+        int num = 0;
+        int x = first+1;
+        while(num < len)
+        {
+            arr_new[num] = arr[x];
+            num++;
+            x = (x+1) % arr.length;
+        }
+        first = arr_new.length-1;
+        last = num;
+        this.arr = arr_new;
+    }
+    private void shrink(T[] arr)
+    {
+        T[] arr_new = (T[])new Object[arr.length/2];
+        int num = 0;
+        int x = first+1;
+        while(num < len)
+        {
+            arr_new[num] = arr[x];
+            num++;
+            x = (x+1) % arr.length;
+        }
+        first = arr_new.length-1;
+        last = num;
+        this.arr = arr_new;
+        System.out.println("arr.len :"+this.arr.length);
     }
     public void addFirst(T item)
     {
-        T[] arr_new = (T[])new Object[len+1];
-        arr_new[0] = item;
-        for(int i = 0; i < len; i++)
-        {
-            arr_new[i+1] = arr[i];
-        }
-        arr = arr_new;
-        len += 1;
+       arr[first] = item;
+       first = (first + arr.length -1) % arr.length;
+       len++;
+       if(len >= arr.length)
+       {
+           enlarge(arr);
+       }
     }
     public void addLast(T item)
     {
-        T[] arr_new = (T[])new Object[len+1];
-        arr_new[len] = item;
-        for(int i = 0; i < len; i++)
+        arr[last] = item;
+        last = (last+1) % arr.length;
+        len++;
+        if(len >= arr.length)
         {
-            arr_new[i] = arr[i];
+            enlarge(arr);
         }
-        arr = arr_new;
-        len+=1;
     }
     public boolean isEmpty()
     {
@@ -55,11 +87,13 @@ public class ArrayDeque <T>{
             System.out.println("len = 0!");
             return;
         }
-        for(int i = 0; i < len-1; i++)
+        int num = 1;
+        while(num < len)
         {
-            System.out.print(arr[i]+" ");
+            System.out.print(arr[(first+num)% arr.length]+" ");
+            num++;
         }
-        System.out.print(arr[len-1]);
+        System.out.print(arr[(first+num)% arr.length]);
         System.out.println();
     }
     public T removeFirst()
@@ -71,14 +105,13 @@ public class ArrayDeque <T>{
             return null;
         }
 
-        T x = arr[0];
-        T[] arr_new = (T[])new Object[len-1];
-        for(int i = 0; i < (len-1); i++)
+        T x = arr[(first+1) % arr.length];
+        first = (first+1) % arr.length;
+        len --;
+        if(len < (arr.length/4))
         {
-            arr_new[i] = arr[i+1];
+            shrink(arr);
         }
-        arr = arr_new;
-        len -= 1;
         return x;
     }
     public T removeLast()
@@ -90,18 +123,22 @@ public class ArrayDeque <T>{
             return null;
         }
 
-        T x = arr[len-1];
-        T[] arr_new = (T[])new Object[len-1];
-        for(int i = 0; i < (len-1); i++)
+        T x = arr[(last-1) % arr.length];
+        last = (last-1) % arr.length;
+        len --;
+        if(len < (arr.length/4))
         {
-            arr_new[i] = arr[i];
+            shrink(arr);
         }
-        arr = arr_new;
-        len -= 1;
         return x;
     }
     public T get(int index)
     {
-        return arr[index];
+        if(index >= len)
+        {
+            System.out.println("index is too big!");
+            return null;
+        }
+        return arr[(first+1+index)% arr.length];
     }
 }
