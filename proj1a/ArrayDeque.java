@@ -123,8 +123,8 @@ public class ArrayDeque <T>{
             return null;
         }
 
-        T x = arr[(last-1) % arr.length];
-        last = (last-1) % arr.length;
+        T x = arr[(last-1+ arr.length) % arr.length];
+        last = (last-1+ arr.length) % arr.length;
         len --;
         if(len < (arr.length/4))
         {
