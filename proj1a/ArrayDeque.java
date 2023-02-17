@@ -53,6 +53,7 @@ public class ArrayDeque <T>{
         if(len == 0)
         {
             System.out.println("len = 0!");
+            return;
         }
         for(int i = 0; i < len-1; i++)
         {
@@ -67,6 +68,7 @@ public class ArrayDeque <T>{
         if(len == 0)
         {
             System.out.println("len = 0!");
+            return null;
         }
 
         T x = arr[0];
@@ -85,6 +87,7 @@ public class ArrayDeque <T>{
         if(len == 0)
         {
             System.out.println("len = 0!");
+            return null;
         }
 
         T x = arr[len-1];

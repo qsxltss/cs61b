@@ -1,13 +1,13 @@
-public class LinkedListDeque <Type> {
+public class LinkedListDeque <T> {
     private node sentinel;
     //private node last;
     private int len;
     private class node
     {
-        public Type item;
+        public T item;
         public node next;
         public node prev;
-        public node(Type x, node p, node n)
+        public node(T x, node p, node n)
         {
             item = x;
             next = n;
@@ -34,14 +34,14 @@ public class LinkedListDeque <Type> {
             this.addLast(copy.item);
         }
     }
-    public void addFirst(Type item)
+    public void addFirst(T item)
     {
         node x = new node(item,sentinel,sentinel.next);
         sentinel.next.prev = x;
         sentinel.next = x;
         len++;
     }
-    public void addLast(Type item)
+    public void addLast(T item)
     {
         node x = new node(item,sentinel.prev,sentinel);
         sentinel.prev.next = x;
@@ -75,7 +75,7 @@ public class LinkedListDeque <Type> {
         System.out.println();
     }
 
-    public Type removeFirst()
+    public T removeFirst()
     {
         /* len=0:不存在node */
         if(len == 0)
@@ -89,7 +89,7 @@ public class LinkedListDeque <Type> {
         len--;
         return x.item;
     }
-    public Type removeLast()
+    public T removeLast()
     {
         /* len=0:不存在node */
         if(len == 0)
@@ -105,7 +105,7 @@ public class LinkedListDeque <Type> {
     }
 
     /**/
-    public Type get(int index)
+    public T get(int index)
     {
         node x = sentinel;
         /* len=0:不存在node */
@@ -128,12 +128,12 @@ public class LinkedListDeque <Type> {
     }
 
     /* helper function for getrecursive */
-    public Type getRecur(node x, int index)
+    public T getRecur(node x, int index)
     {
         if(index == 0) return x.item;
         return getRecur(x.next,index-1);
     }
-    public Type getRecursive(int index)
+    public T getRecursive(int index)
     {
         /* index>=len:超过了能get的长度 */
         if(index >= len)
